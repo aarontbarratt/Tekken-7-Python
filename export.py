@@ -2,7 +2,9 @@ import csv
 
 
 def exportcsv(cursor, location, filename):
-    with open(location +'\\'+filename+'.csv', mode='w', newline='') as employee_file:
-        employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    with open(location +'\\'+filename+'.csv', mode='w', newline='') as exportfile:
+        exportfile = csv.writer(exportfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        exportfile.writerow(['id', 'title', 'type'])
+        exportfile.writerow(cursor.description)
         for row in cursor:
-            employee_writer.writerow(row)
+            exportfile.writerow(row)
