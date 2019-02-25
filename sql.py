@@ -1,12 +1,16 @@
 import pyodbc
 from export import exportcsv
 
+# driver = flavour of sql. 'SQL Server' in this instance
+# sqlserver = sql instance name
+# db = database name
+
 driver = 'SQL Server'
 sqlserver = 'AARON-PC\\MFDOOM'  # pycharm complains with \
 db = 'Budget'
 
-conn = pyodbc.connect('Driver={'+driver+'};''Server='+sqlserver+';''Database='+db+';''Trusted_Connection=yes;')
-cursor = conn.cursor()
+connectionString = pyodbc.connect('Driver={'+driver+'};''Server='+sqlserver+';''Database='+db+';''Trusted_Connection=yes;')
+cursor = connectionString.cursor()
 
 
 def main():
