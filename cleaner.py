@@ -1,4 +1,17 @@
+def left(string, number):
+    string = str(string)
+    string = string[:number]
+    return string
 
-def cleanSQL(result):
-    result = result[1:len(result) - 1]  # removes the () from around the result
-    return result
+
+def right(string, number):
+    string = str(string)
+    string = string[len(string) - number:]
+    return string
+
+
+def leftright(string, lnum, rnum):
+    string = str(string)
+    string = left(string, lnum)
+    string = right(string, rnum)
+    return string

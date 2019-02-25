@@ -1,5 +1,5 @@
 import pyodbc
-from cleaner import cleanSQL
+from cleaner import left, right, leftright
 
 driver = 'SQL Server'
 sqlserver = 'AARON-PC\\MFDOOM'  # pycharm complains with \
@@ -22,6 +22,6 @@ cursor.execute('with cte as '
                'from cte ')
 
 for row in cursor:
-    row = str(row)  # must be converted to string before being passed
-    row = cleanSQL(row)
+    row = str(row)
+
     print(row)
