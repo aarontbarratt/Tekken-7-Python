@@ -2,8 +2,10 @@
   <dictionary name="aaronb">
     <words>
       <w>leftright</w>
+      <w>lnum</w>
       <w>lrtrim</w>
       <w>ltrim</w>
+      <w>rnum</w>
       <w>rtrim</w>
       <w>sqlserver</w>
     </words>
