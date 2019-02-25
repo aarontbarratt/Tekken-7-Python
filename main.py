@@ -12,7 +12,10 @@ cursor = conn.cursor()
 def main():
     sql = 'select * from vBudget'
     cursor.execute(sql)
-    exportcsv(cursor, 'C:\\temp', 'test')
+    exportcsv(cursor, 'C:\\temp', 'budget')
+    sql = 'select * from vUsers'
+    cursor.execute(sql)
+    exportcsv(cursor, 'C:\\temp', 'users')
 
 
 main()
