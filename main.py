@@ -1,5 +1,5 @@
 import pyodbc
-import csv
+from export import exportcsv
 
 
 def main():
@@ -17,14 +17,10 @@ def main():
                    '    union all '
                    '    select *, \'dog\' as type from dogs '
                    ') '
-                   'select * '
+                   'select id, title, type '
                    'from cte ')
 
-    # export logic should be moved into its own file
-    with open('C:\\temp\\employee_file.csv', mode='w', newline='') as employee_file:
-        employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        for row in cursor:
-            employee_writer.writerow(row)
+    exportcsv(cursor, 'C:\\temp', 'test')
 
 
 main()
