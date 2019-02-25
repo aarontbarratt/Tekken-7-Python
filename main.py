@@ -1,5 +1,5 @@
 import pyodbc
-from cleaner import ltrim, rtrim
+import csv
 
 
 def main():
@@ -13,18 +13,16 @@ def main():
     cursor = conn.cursor()
     cursor.execute('with cte as '
                    '( '
-                   '    select * from cats '
+                   '    select *, \'cat\' as type from cats '
                    '    union all '
-                   '    select * from dogs '
+                   '    select *, \'dog\' as type from dogs '
                    ') '
                    'select * '
                    'from cte ')
 
-    for row in cursor:
-        row = str(row)
-        row = ltrim(row, 1)     # remove first character
-        row = rtrim(row, 1)     # remove second character
-        print(row)
-
+    with open('C:\\temp\\employee_file.csv', mode='w') as employee_file:
+        employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for row in cursor:
+            employee_writer.writerow(row)
 
 main()
