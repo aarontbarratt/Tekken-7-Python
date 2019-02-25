@@ -1,33 +1,31 @@
-import tkinter as tk
+# creates ui layout
 
+import tkinter as tk
+from uievents import *
+
+# create window
 win = tk.Tk()
 win.title('Tekken 7 Frame Data')
+win.geometry('500x450')
 win.resizable(1, 1)
 
+# sql instance label and field
+lb = tk.Label(win, text='SQL Instance:')
+lb.grid(column=0, row=0)
 
-def submitcall():
-    print('click')
+fd = tk.Entry(win)
+fd.grid(column=1, row=0)
 
+# database label and field
+lb = tk.Label(win, text='Database')
+lb.grid(column=0, row=1)
 
-def exitcall():
-    print('exit')
+fd = tk.Entry(win)
+fd.grid(column=1, row=1)
 
-
-# create frame
-frame = tk.Frame(win, height=200, width=300)    # create frame with width and height
-frame.pack_propagate(0)                         # don't shrink
-frame.pack()
-
-frame2 = frame
-
-# entry field in frame
-entry = tk.Entry(frame)
-# submit button in frame
-submit = tk.Button(frame, text='submit', command=submitcall)
-exit = tk.Button(frame, text='exit', command=exitcall)
-
-entry.pack()
-submit.pack()
+# connect button
+bt = tk.Button(win, text='connect', command=connectEvent)
+bt.grid(column=0, row=3)
 
 
 win.mainloop()
