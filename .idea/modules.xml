@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Tekken7FrameData.iml" filepath="$PROJECT_DIR$/.idea/Tekken7FrameData.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tekken7App.iml" filepath="$PROJECT_DIR$/.idea/Tekken7App.iml" />
     </modules>
   </component>
 </project>
