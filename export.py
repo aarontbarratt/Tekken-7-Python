@@ -33,6 +33,8 @@ def exportToFile(string, location, filename, extension):
 
 
 def exportToLog(message):
+    message = str(message)
     now = datetime.datetime.now()
+    now = str(now)
     log.debug(str(now)+' > '+message)
     return message
