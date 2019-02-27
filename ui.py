@@ -1,18 +1,19 @@
-# creates ui layout
-
 import tkinter as tk
+from export import exportToLog
+
 
 # ui events
 #   might be best to move into a different file in the future
 
 
 def connectSQL():
-    print('connect')
+    # use field data to connect
+    exportToLog('connected')
 
 
 def exitProgram():
-    global win
-    win.destroy()
+    exportToLog('exit app')
+    win.destroy()   # needs () to work
 
 
 # create window
@@ -40,7 +41,7 @@ bt = tk.Button(win, text='connect', command=connectSQL)
 bt.grid(column=0, row=2)
 
 # exit button
-bt = tk.Button(win, text='exit', command=exitProgram())
+bt = tk.Button(win, text='exit', command=exitProgram)
 bt.grid(column=1, row=2)
 
 win.mainloop()
