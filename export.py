@@ -27,8 +27,9 @@ def createCsv(string, character, flag):
 
 
 def exportToFile(string, location, filename, extension):
-    f = open(location+'\\'+filename+extension, 'r+')
+    f = open(location+'\\'+filename+'.'+extension, 'a+')    # a = append, + = create if not exist
     f.write(string)
+    f.close()
     return 0
 
 
