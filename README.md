@@ -1,6 +1,6 @@
 # Tekken 7 FrameData
 
-This project aims to provide a dynamic csv file of all frame data. All the of the frame data is being pulled from
+This project aims to provide a dynamic csv file of all frame data. All of the frame data is being pulled from
 http://rbnorway.org. So thank you to all the guys at RB Norway for all the hard work collecting data and making it
 available to the community for free.
 
