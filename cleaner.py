@@ -1,20 +1,21 @@
-
+# returns everything before index
 def left(string, number):
     string = str(string)
     string = string[:number]
     return string
 
 
+# returns everything after index. Includes index
 def right(string, number):
     string = str(string)
     string = string[len(string) - number:]
     return string
 
 
-def leftright(string, lnum, rnum):
+# returns everything between index's
+def leftright(string, start, end):
     string = str(string)
-    string = left(string, lnum)
-    string = right(string, rnum)
+    string = string[start:end]
     return string
 
 
