@@ -1,4 +1,10 @@
 import csv
+import datetime
+import logging as log
+
+logFileName = 'tekken7app.log'
+logLocation = 'C:\\temp'
+log.basicConfig(filename=logLocation+'\\'+logFileName, level=log.DEBUG)
 
 
 # this exports data from a sql query cursor
@@ -21,6 +27,12 @@ def createCsv(string, character, flag):
 
 
 def exportToFile(string, location, filename, extension):
-    f = open(location+'\\'+filename+extension, 'w+')
+    f = open(location+'\\'+filename+extension, 'r+')
     f.write(string)
     return 0
+
+
+def exportToLog(message):
+    now = datetime.datetime.now()
+    log.debug(str(now)+' > '+message)
+    return message
