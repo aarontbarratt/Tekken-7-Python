@@ -26,6 +26,3 @@ def main():
         page = page.replace('\\t', '  ')
         page = page.replace('<br />', '\n')
         exportToFile(page, 'C:\\temp', character, '.html')
-
-
-main()
