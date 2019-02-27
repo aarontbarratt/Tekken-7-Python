@@ -6,7 +6,7 @@ from export import exportcsv
 # db = database name
 
 driver = 'SQL Server'
-sqlserver = 'AARON  -PC\\MFDOOM'  # pycharm complains with \
+sqlserver = 'AARON-PC\\MFDOOM'  # pycharm complains with \
 db = 'Budget'
 
 connectionString = pyodbc.connect('Driver={'+driver+'};'
