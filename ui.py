@@ -54,13 +54,15 @@ def exitProgram():
     win.destroy()   # needs () to work
 
 
-# if this function is in main.py the program will error
 def dat():
+    i = 0
+    count = len(characters)
     for character in characters:
+        i += 1  # increment at the start so 1st loop is 1/40
         page = 'http://rbnorway.org/'+character+'-t7-frames/'
         link = page
         page = requestPage(page)
         page = str(page)
         page = cleanTable(page, character)
-        exportToLog('processing: '+link)
+        exportToLog('processing: '+link+', '+str(i)+'/'+str(count))
         exportToFile(page, 'C:\\temp', 'fd', 'csv')
