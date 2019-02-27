@@ -1,5 +1,12 @@
 import tkinter as tk
 from export import exportToLog
+from pagereader import requestPage, exportToFile
+from cleaner import cleanTable
+
+characters = ['akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin', 'dragunov',
+              'eddy', 'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin', 'josie', 'katarina',
+              'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe', 'marduk', 'master-raven',
+              'miguel', 'nina', 'noctis', 'paul', 'shaheen', 'steve', 'xiaoyu', 'yoshimitsu']
 
 
 def createUI():
@@ -38,8 +45,22 @@ def createUI():
 def connectSQL():
     # use field data to connect
     exportToLog('connected')
+    print('connect')
+    dat()
 
 
 def exitProgram():
     exportToLog('exit app')
     win.destroy()   # needs () to work
+
+
+# if this function is in main.py the program will error
+def dat():
+    for character in characters:
+        page = 'http://rbnorway.org/'+character+'-t7-frames/'
+        link = page
+        page = requestPage(page)
+        page = str(page)
+        page = cleanTable(page, character)
+        exportToLog('processing: '+link)
+        exportToFile(page, 'C:\\temp', 'fd', 'csv')
