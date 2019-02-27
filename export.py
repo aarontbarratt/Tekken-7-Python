@@ -18,3 +18,9 @@ def createCsv(string, character, flag):
     if flag is False:   # exports all data into one file. Currently does not work
         f = open('C:\\temp\\export.csv', 'w+')
         f.write(string)
+
+
+def exportToFile(string, location, filename, extension):
+    f = open(location+'\\'+filename+extension, 'w+')
+    f.write(string)
+    return 0
