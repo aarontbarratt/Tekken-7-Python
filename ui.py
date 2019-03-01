@@ -29,13 +29,6 @@ def createUI():
     win.mainloop()
 
 
-def connectSQL():
-    # use field data to connect
-    exportToLog('connected')
-    print('connect')
-    dat()
-
-
 def exitProgram():
     exportToLog('exit app')
     win.destroy()   # needs () to work
