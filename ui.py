@@ -18,7 +18,7 @@ def createUI():
     win.resizable(1, 1)
 
     # run button
-    bt = tk.Button(win, text='Run', command=dat)
+    bt = tk.Button(win, text='Run', command=run)
     bt.grid(column=0, row=0)
     bt.flash()
 
@@ -34,7 +34,7 @@ def exitProgram():
     win.destroy()   # needs () to work
 
 
-def dat():
+def run():
     i = 0
     count = len(characters)
     for character in characters:
