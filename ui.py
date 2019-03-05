@@ -19,10 +19,10 @@ def createUI():
     win.resizable(0, 0)
 
     # run button
-    bt = tk.Button(win, text='Run', command=run)
+    bt = tk.Button(win, text='CSV', command=CSVWindow)
     bt.grid(column=0, row=0)
 
-    # sql button
+    # csv button
     bt = tk.Button(win, text='SQL', command=SQLWindow)
     bt.grid(column=1, row=0)
     bt.flash()
@@ -73,6 +73,17 @@ def SQLWindow():
     SQLWin.mainloop()
 
 
+def CSVWindow():
+    global CSVWin
+    CSVWin = tk.Tk()
+    CSVWin.title('SQL')
+    CSVWin.geometry('350x75')
+    CSVWin.resizable(0, 0)
+
+    bt = tk.Button(CSVWin, text='Exit', command=closeCSVWindow) # closes the entire program for some reason
+    bt.grid(column=0, row=0)
+
+
 def run():
     i = 0
     count = len(characters)
@@ -101,3 +112,9 @@ def closeSQLWindow():
     exportToLog('Close SQL Window')
     SQLWin.destroy()
     SQLWin.quit()   # if you don't include both you have to double click to exit?
+
+
+def closeCSVWindow():
+    exportToLog('Close CSV Window')
+    CSVWin.destroy()
+    CSVWin.quit()   # if you don't include both you have to double click to exit?

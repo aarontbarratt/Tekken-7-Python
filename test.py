@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import *
 
@@ -7,12 +6,32 @@ characters = ['akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', '
               'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe', 'marduk', 'master-raven',
               'miguel', 'nina', 'noctis', 'paul', 'shaheen', 'steve', 'xiaoyu', 'yoshimitsu']
 
-master = tk.Tk()
 
-variable = StringVar(master)
-variable.set(characters[0])    # default value
+def main():
+    global master
+    master = tk.Tk()
+    master.geometry('200x200')
 
-w = OptionMenu(master, variable, *characters)
-w.pack()
+    variable = StringVar(master)
+    variable.set(characters[0])  # default value
 
-mainloop()
+    w = OptionMenu(master, variable, *characters)
+    w.pack(side=TOP)
+
+    lb = Label(master, text='thing')
+    lb.pack(side=LEFT)
+
+    en = Entry(master)
+    en.pack(side=LEFT)
+
+    bt = Button(master, text='Exit', command=exitProgram)
+    bt.pack(side=BOTTOM)
+
+    mainloop()
+
+
+def exitProgram():
+    master.destroy()
+
+
+main()
