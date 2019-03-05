@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from tkinter import *
 from cleaner import cleanTable
 from export import exportToLog
 from pagereader import requestPage, exportToFile
@@ -31,6 +31,13 @@ def createUI():
     bt = tk.Button(win, text='Exit', command=exitProgram)
     bt.grid(column=2, row=0)
 
+    # character drop down menu
+    var = StringVar(win)
+    var.set(characters[0])  # default value
+    om = OptionMenu(win, var, *characters)
+    om.grid(column=0, row=1)
+
+    # start loop
     win.mainloop()
 
 
@@ -87,9 +94,10 @@ def testSQLConnection():
 
 def exitProgram():
     exportToLog('Exit App')
-    win.destroy()   # needs () to work
+    win.quit()   # needs () to work
 
 
 def closeSQLWindow():
     exportToLog('Close SQL Window')
     SQLWin.destroy()
+    SQLWin.quit()   # if you don't include both you have to double click to exit?
