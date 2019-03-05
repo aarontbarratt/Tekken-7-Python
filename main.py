@@ -2,8 +2,9 @@ from ui import createUI
 
 
 def main():
+    # should probably make sure path exists when the program initially starts
+    # if paths don't exists create path, else createUI()
     createUI()
-    # rest of the code doesn't run when the UI is created. Probably need to use the mainloop() in UI to make any calls
 
 
 main()
