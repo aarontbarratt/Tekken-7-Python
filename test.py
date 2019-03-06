@@ -28,13 +28,17 @@ def calcPayment(salaryOne, salaryTwo, cost):
     whole = p1 + p2
     p1Percent = p1 / whole * 100
     p2Percent = p2 / whole * 100
-    print(str(round(p1Percent, 2)) + ':' + str(round(p2Percent, 2)))
 
-    a = cost / 100 * p1Percent
-    b = cost / 100 * p2Percent
-    print('Person 1 Pays ' + str(round(a, 2)))
-    print('Person 2 Pays ' + str(round(b, 2)))
-    print(round(a + b, 2))
+    a = round(cost / 100 * p1Percent, 2)
+    b = round(cost / 100 * p2Percent, 2)
+    c = round(a + b, 2)
+
+    return a, b, c
 
 
-calcPayment(28500, 23000, 368.48)
+def main():
+    x = calcPayment(28500, 22000, 1300)
+    print(x)
+
+
+main()
