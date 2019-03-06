@@ -4,6 +4,7 @@ from cleaner import cleanTable
 from export import exportToLog
 from pagereader import requestPage, exportToFile
 
+# add Negan and Julia when frame data is available
 characters = ['akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin', 'dragunov',
               'eddy', 'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin', 'josie', 'katarina',
               'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe', 'marduk', 'master-raven',
@@ -25,17 +26,10 @@ def createUI():
     # csv button
     bt = tk.Button(win, text='SQL', command=SQLWindow)
     bt.grid(column=1, row=0)
-    bt.flash()
 
     # exit button
     bt = tk.Button(win, text='Exit', command=exitProgram)
     bt.grid(column=2, row=0)
-
-    # character drop down menu
-    var = StringVar(win)
-    var.set(characters[0])  # default value
-    om = OptionMenu(win, var, *characters)
-    om.grid(column=0, row=1)
 
     # start loop
     win.mainloop()
@@ -77,11 +71,20 @@ def CSVWindow():
     global CSVWin
     CSVWin = tk.Tk()
     CSVWin.title('SQL')
-    CSVWin.geometry('350x75')
+    CSVWin.geometry('150x300')
     CSVWin.resizable(0, 0)
 
-    bt = tk.Button(CSVWin, text='Exit', command=closeCSVWindow) # closes the entire program for some reason
-    bt.grid(column=0, row=0)
+    # character drop down menu
+    var = StringVar(CSVWin)
+    var.set(characters[0])  # default value
+    om = OptionMenu(CSVWin, var, *characters)
+    om.pack(fill=X)
+
+    bt = tk.Button(CSVWin, text='Export', command=run)
+    bt.pack(fill=X)
+
+    bt = tk.Button(CSVWin, text='Exit', command=closeCSVWindow)
+    bt.pack(fill=X)
 
 
 def run():
@@ -105,16 +108,15 @@ def testSQLConnection():
 
 def exitProgram():
     exportToLog('Exit App')
-    win.quit()   # needs () to work
+    win.quit()
+    win.destroy()   # need both to completely close program
 
 
 def closeSQLWindow():
     exportToLog('Close SQL Window')
     SQLWin.destroy()
-    SQLWin.quit()   # if you don't include both you have to double click to exit?
 
 
 def closeCSVWindow():
     exportToLog('Close CSV Window')
     CSVWin.destroy()
-    CSVWin.quit()   # if you don't include both you have to double click to exit?
