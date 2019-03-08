@@ -22,35 +22,44 @@ def calcPayment(salaryOne, salaryTwo, cost):
 class ExpensesApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
+        # window config
         self.title('Expense Split App')
         self.geometry('200x200')
         self.resizable(0, 0)
 
-        # create ui
+        # labels
         self.personOneLb = tk.Label(self, text='Salary 1')
         self.personTwoLb = tk.Label(self, text='Salary 2')
         self.costLb = tk.Label(self, text='Cost')
 
+        # entry fields
         self.personOneEn = tk.Entry(self)
         self.personTwoEn = tk.Entry(self)
         self.costEn = tk.Entry(self)
 
+        # buttons
         self.getButton = tk.Button(self, text='Get', command=self.onGet)
         self.resultLb = tk.Label(self, text='result')
         self.exitButton = tk.Button(self, text='Exit', command=self.onExit)
 
-        # pack ui
+        # pack UI
+        # person 1
         self.personOneLb.pack()
         self.personOneEn.pack()
 
+        # person 2
         self.personTwoLb.pack()
         self.personTwoEn.pack()
 
+        # cost
         self.costLb.pack()
         self.costEn.pack()
 
+        # get button
         self.getButton.pack()
         self.resultLb.pack()
+
+        # exit button
         self.exitButton.pack()
 
     def onGet(self):
