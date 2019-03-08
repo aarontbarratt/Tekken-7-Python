@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import *
-from cleaner import cleanTable
-from export import exportToLog
-from pagereader import requestPage, exportToFile
+
+import cleaner as clean
+import export
+import pagereader as reader
 
 # add Negan and Julia when frame data is available
 characters = ['akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin', 'dragunov',
@@ -94,29 +95,29 @@ def run():
         i += 1  # increment at the start so 1st loop is 1/40
         page = 'http://rbnorway.org/'+character+'-t7-frames/'
         link = page
-        page = requestPage(page)
+        page = reader.requestPage(page)
         page = str(page)
-        page = cleanTable(page, character)
-        exportToLog('processing: '+link+', '+str(i)+'/'+str(count))
-        exportToFile(page, 'C:\\temp', 'fd', 'csv')
+        page = clean.cleanTable(page, character)
+        export.exportToLog('processing: '+link+', '+str(i)+'/'+str(count))
+        export.exportToFile(page, 'C:\\temp', 'fd', 'csv')
 
 
 def testSQLConnection():
-    exportToLog('Test SQL Connection')
+    export.exportToLog('Test SQL Connection')
     # test sql connection and set label to success or fail
 
 
 def exitProgram():
-    exportToLog('Exit App')
+    export.exportToLog('Exit App')
     win.quit()
     win.destroy()   # need both to completely close program
 
 
 def closeSQLWindow():
-    exportToLog('Close SQL Window')
+    export.exportToLog('Close SQL Window')
     SQLWin.destroy()
 
 
 def closeCSVWindow():
-    exportToLog('Close CSV Window')
+    export.exportToLog('Close CSV Window')
     CSVWin.destroy()

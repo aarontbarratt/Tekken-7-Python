@@ -1,5 +1,6 @@
 import pyodbc
-from export import exportcsv
+
+import export
 
 # driver = flavour of sql. 'SQL Server' in this instance
 # sqlserver = sql instance name
@@ -19,10 +20,10 @@ cursor = connectionString.cursor()
 def main():
     sql = 'select * from vBudget'
     cursor.execute(sql)
-    exportcsv(cursor, 'C:\\temp', 'budget')
+    export.exportcsv(cursor, 'C:\\temp', 'budget')
     sql = 'select * from vUsers'
     cursor.execute(sql)
-    exportcsv(cursor, 'C:\\temp', 'users')
+    export.exportcsv(cursor, 'C:\\temp', 'users')
 
 
 main()

@@ -1,5 +1,6 @@
 import tkinter as tk
-from export import exportToLog
+
+import export
 
 
 def calcPayment(salaryOne, salaryTwo, cost):
@@ -57,11 +58,11 @@ class ExpensesApp(tk.Tk):
         b = float(self.personTwoEn.get())
         c = float(self.costEn.get())
         result = calcPayment(a, b, c)
-        exportToLog(result)
+        export.exportToLog(result)
         self.resultLb.config(text=str(result))
 
     def onExit(self):
-        exportToLog('Exit Test Program')
+        export.exportToLog('Exit Test Program')
         self.destroy()
 
 
