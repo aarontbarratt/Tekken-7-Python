@@ -73,7 +73,3 @@ class ExpensesApp(tk.Tk):
     def onExit(self):
         export.exportToLog('Exit Test Program')
         self.destroy()
-
-
-app = ExpensesApp()
-app.mainloop()
