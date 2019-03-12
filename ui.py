@@ -18,6 +18,7 @@ wikiCharacters = ['']
 
 wikiAddress = 'https://tekken.fandom.com/wiki/'
 
+
 class Tekken7App(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
