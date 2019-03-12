@@ -1,14 +1,14 @@
 import tkinter as tk
 
 import cleaner as clean
-import pagereader
+import pagereader as read
 
 # in the format of the tekken 7 wiki
-dutchCharacters = ['All', 'akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin',
-                   'dragunov', 'eddy', 'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin',
-                   'josie', 'katarina', 'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe',
-                   'marduk', 'master-raven', 'miguel', 'nina', 'noctis', 'paul', 'shaheen', 'steve', 'xiaoyu',
-                   'yoshimitsu']
+rbCharacters = ['All', 'akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin',
+                'dragunov', 'eddy', 'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin',
+                'josie', 'katarina', 'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe',
+                'marduk', 'master-raven', 'miguel', 'nina', 'noctis', 'paul', 'shaheen', 'steve', 'xiaoyu',
+                'yoshimitsu']
 
 rbAddress = 'http://rbnorway.org/'
 rbExtension = '-t7-frames/'
@@ -31,8 +31,8 @@ class Tekken7App(tk.Tk):
 
         # drop downs
         self.charDropDownValue = tk.StringVar(self)
-        self.charDropDownValue.set(dutchCharacters[0])    # set default value
-        self.characterDropDown = tk.OptionMenu(self, self.charDropDownValue, *dutchCharacters)
+        self.charDropDownValue.set(rbCharacters[0])    # set default value
+        self.characterDropDown = tk.OptionMenu(self, self.charDropDownValue, *rbCharacters)
 
         # entries
 
@@ -47,12 +47,23 @@ class Tekken7App(tk.Tk):
         self.exitButton.pack()
 
     def onGo(self):
+        # if All is currently selected go through each character and get the data
         if self.charDropDownValue.get() == 'All':
-            print(self.charDropDownValue)
+            for character in rbCharacters:
+                # if the character is 'all' do nothing
+                if character == 'All':
+                    print('all')
+                # print the rest
+                else:
+                    webpage = rbAddress + character + rbExtension
+                    webpage = read.requestPage(webpage)
+                    webpage = clean.cleanTable(str(webpage), character)
+                    print(webpage)
+        # if anything other than 'all' is selected only get that characters data
         else:
             x = rbAddress + self.charDropDownValue.get() + rbExtension
             print(x)
-            webpage = pagereader.requestPage(x)
+            webpage = read.requestPage(x)
             webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
             print(webpage)
 
