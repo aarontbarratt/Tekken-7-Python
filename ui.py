@@ -1,118 +1,83 @@
 import tkinter as tk
-from tkinter import *
 
 import cleaner as clean
-import export
-import pagereader as reader
-from main import characters
+import pagereader as read
+
+# in the format of the tekken 7 wiki
+rbCharacters = ['All', 'akuma', 'alisa', 'anna', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin',
+                'dragunov', 'eddy', 'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin',
+                'josie', 'katarina', 'kazumi', 'kazuya', 'lars', 'lei', 'law', 'lee', 'leo', 'lili', 'lucky-chloe',
+                'marduk', 'master-raven', 'miguel', 'nina', 'noctis', 'paul', 'shaheen', 'steve', 'xiaoyu',
+                'yoshimitsu']
+
+rbAddress = 'http://rbnorway.org/'
+rbExtension = '-t7-frames/'
+
+# in the format of frame data site
+wikiCharacters = ['']
+
+wikiAddress = 'https://tekken.fandom.com/wiki/'
 
 
-def createUI():
-    global win
-    # create window
-    win = tk.Tk()
-    win.title('Tekken 7 Frame Data')
-    win.geometry('250x250')
-    win.resizable(0, 0)
+class Tekken7App(tk.Tk):
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self.title('Tekken 7 Frame Data')
+        self.geometry('500x500')
+        self.resizable(0, 0)
 
-    # run button
-    bt = tk.Button(win, text='CSV', command=CSVWindow)
-    bt.grid(column=0, row=0)
+        # labels
+        self.characterLb = tk.Label(self, text='Character')
 
-    # csv button
-    bt = tk.Button(win, text='SQL', command=SQLWindow)
-    bt.grid(column=1, row=0)
+        # drop downs
+        self.charDropDownValue = tk.StringVar(self)
+        self.charDropDownValue.set(rbCharacters[0])    # set default value
+        self.characterDropDown = tk.OptionMenu(self, self.charDropDownValue, *rbCharacters)
 
-    # exit button
-    bt = tk.Button(win, text='Exit', command=exitProgram)
-    bt.grid(column=2, row=0)
+        # entries
 
-    # start loop
-    win.mainloop()
+        # buttons
+        self.getButton = tk.Button(self, text='Go', command=self.onGo)
+        self.exitButton = tk.Button(self, text='Exit', command=self.onExit)
 
+        # pack UI
+        self.characterLb.pack()
+        self.characterDropDown.pack()
+        self.getButton.pack()
+        self.exitButton.pack()
 
-def SQLWindow():
-    global SQLWin
-    SQLWin = tk.Tk()
-    SQLWin.title('SQL')
-    SQLWin.geometry('350x75')
-    SQLWin.resizable(0, 0)
+    def onGo(self):
+        # if All is currently selected go through each character and get the data
+        if self.charDropDownValue.get() == 'All':
+            for character in rbCharacters:
+                # if the character is 'all' do nothing
+                if character == 'All':
+                    print('all')
+                # print the rest
+                else:
+                    webpage = rbAddress + character + rbExtension
+                    webpage = read.requestPage(webpage)
+                    webpage = clean.cleanTable(str(webpage), character)
+                    print(webpage)
+        # if anything other than 'all' is selected only get that characters data
+        else:
+            x = rbAddress + self.charDropDownValue.get() + rbExtension
+            print(x)
+            webpage = read.requestPage(x)
+            webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
+            print(webpage)
 
-    # labels
-    lb = tk.Label(SQLWin, text='SQL Server')
-    lb.grid(column=0, row=0)
-
-    lb = tk.Label(SQLWin, text='DB')
-    lb.grid(column=1, row=0)
-
-    # entry fields
-    en = tk.Entry(SQLWin)
-    en.grid(column=0, row=1)
-
-    en = tk.Entry(SQLWin)
-    en.grid(column=1, row=1)
-
-    # buttons
-    bt = tk.Button(SQLWin, text='Connect', command=testSQLConnection)
-    bt.grid(column=2, row=1)
-
-    bt = tk.Button(SQLWin, text='Exit', command=closeSQLWindow)
-    bt.grid(column=3, row=1)
-
-    # start loop
-    SQLWin.mainloop()
+    def onExit(self):
+        self.destroy()
 
 
-def CSVWindow():
-    global CSVWin
-    CSVWin = tk.Tk()
-    CSVWin.title('SQL')
-    CSVWin.geometry('150x300')
-    CSVWin.resizable(0, 0)
-
-    # character drop down menu
-    var = StringVar(CSVWin)
-    var.set(characters[0])  # default value
-    om = OptionMenu(CSVWin, var, *characters)
-    om.pack(fill=X)
-
-    bt = tk.Button(CSVWin, text='Export', command=run)
-    bt.pack(fill=X)
-
-    bt = tk.Button(CSVWin, text='Exit', command=closeCSVWindow)
-    bt.pack(fill=X)
-
-
-def run():
-    i = 0
-    count = len(characters)
-    for character in characters:
-        i += 1  # increment at the start so 1st loop is 1/40
-        page = 'http://rbnorway.org/'+character+'-t7-frames/'
-        link = page
-        page = reader.requestPage(page)
-        page = str(page)
-        page = clean.cleanTable(page, character)
-        export.exportToLog('processing: '+link+', '+str(i)+'/'+str(count))
-        export.exportToFile(page, 'C:\\temp', 'fd', 'csv')
-
-
-def testSQLConnection():
-    export.exportToLog('Test SQL Connection')
-    # test sql connection and set label to success or fail
-
-
-def exitProgram():
-    export.exportToLog('Exit App')
-    win.quit()
-    win.destroy()   # need both to completely close program
-
-
-def closeSQLWindow():
-    export.exportToLog('Close SQL Window')
-    SQLWin.destroy()
-
-
-def closeCSVWindow():
-    export.exportToLog('Close CSV Window')
-    CSVWin.destroy()
+# def run():
+#     i = 0
+#     count = len(characters)
+#     for character in characters:
+#         i += 1  # increment at the start so 1st loop is 1/40
+#         page = 'http://rbnorway.org/'+character+'-t7-frames/'
+#         link = page
+#         page = requestPage(page)
+#         page = str(page)
+#         page = cleanTable(page, character)
