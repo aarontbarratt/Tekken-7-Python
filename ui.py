@@ -47,11 +47,14 @@ class Tekken7App(tk.Tk):
         self.exitButton.pack()
 
     def onGo(self):
-        x = rbAddress + self.charDropDownValue.get() + rbExtension
-        print(x)
-        webpage = pagereader.requestPage(x)
-        webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
-        print(webpage)
+        if self.charDropDownValue.get() == 'All':
+            print(self.charDropDownValue)
+        else:
+            x = rbAddress + self.charDropDownValue.get() + rbExtension
+            print(x)
+            webpage = pagereader.requestPage(x)
+            webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
+            print(webpage)
 
     def onExit(self):
         self.destroy()
@@ -67,5 +70,3 @@ class Tekken7App(tk.Tk):
 #         page = requestPage(page)
 #         page = str(page)
 #         page = cleanTable(page, character)
-#         exportToLog('processing: '+link+', '+str(i)+'/'+str(count))
-#         exportToFile(page, 'C:\\temp', 'fd', 'csv')
