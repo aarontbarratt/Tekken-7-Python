@@ -4,7 +4,7 @@ import logging as log
 
 logFileName = 'tekken7app.log'
 logLocation = 'C:\\temp'
-log.basicConfig(filename=logLocation+'\\'+logFileName, level=log.DEBUG)
+log.basicConfig(filename=logLocation + '\\' + logFileName, level=log.DEBUG)
 
 
 # this exports data from a sql query cursor

@@ -34,8 +34,6 @@ class Tekken7App(tk.Tk):
         self.charDropDownValue.set(rbCharacters[0])    # set default value
         self.characterDropDown = tk.OptionMenu(self, self.charDropDownValue, *rbCharacters)
 
-        # entries
-
         # buttons
         self.getButton = tk.Button(self, text='Go', command=self.onGo)
         self.exitButton = tk.Button(self, text='Exit', command=self.onExit)
