@@ -50,11 +50,8 @@ class Tekken7App(tk.Tk):
         # if All is currently selected go through each character and get the data
         if self.charDropDownValue.get() == 'All':
             for character in rbCharacters:
-                # if the character is 'all' do nothing
-                if character == 'All':
-                    print('all')
-                # print the rest
-                else:
+                # if the character is not 'all' print
+                if character != 'All':
                     webpage = rbAddress + character + rbExtension
                     webpage = read.requestPage(webpage)
                     webpage = clean.cleanTable(str(webpage), character)
