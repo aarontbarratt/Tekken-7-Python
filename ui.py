@@ -1,6 +1,7 @@
 import tkinter as tk
 
 import cleaner as clean
+import export
 import pagereader as read
 
 # in the format of the tekken 7 wiki
@@ -54,6 +55,7 @@ class Tekken7App(tk.Tk):
                     webpage = read.requestPage(webpage)
                     webpage = clean.cleanTable(str(webpage), character)
                     print(webpage)
+                    export.exportToLog(str(webpage))
         # if anything other than 'all' is selected only get that characters data
         else:
             x = rbAddress + self.charDropDownValue.get() + rbExtension

@@ -1,10 +1,33 @@
 import csv
 import datetime
 import logging as log
+import os
 
+
+paths = ['C:\\Tekken 7 Frame Data', 'C:\\Tekken 7 Frame Data\\export', 'C:\\Tekken 7 Frame Data\\logs']
+rootPath = paths[0]
+exportPath = paths[1]
+
+logPath = paths[2]
 logFileName = 'tekken7app.log'
-logLocation = 'C:\\temp'
-log.basicConfig(filename=logLocation + '\\' + logFileName, level=log.DEBUG)
+log.basicConfig(filename=logPath + '\\' + logFileName, level=log.DEBUG)
+
+
+def init():
+    def makeDirectory(_path_):
+        p = _path_
+        try:
+            os.mkdir(p)
+        except OSError:
+            if os.path.isdir(p):
+                print('path: "' + p + '" already exists')
+            else:
+                print(OSError)
+        else:
+            print('Created Path: ' + p)
+
+    for path in paths:
+        makeDirectory(path)
 
 
 # this exports data from a sql query cursor
