@@ -7,7 +7,7 @@ import export
 # db = database name
 
 driver = 'SQL Server'
-sqlserver = 'AARON-PC\\MFDOOM'  # pycharm complains with \
+sqlserver = 'AARON-LP'  # pycharm complains with \
 db = 'Budget'
 
 connectionString = pyodbc.connect('Driver={'+driver+'};'
