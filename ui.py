@@ -29,10 +29,11 @@ class Tekken7App(tk.Tk):
 
         # labels
         self.characterLb = tk.Label(self, text='Character')
+        self.previewLb = tk.Label(self, text='Preview:')
 
         # text box
-        self.frameData = tk.Text(self, height=2, width=20)
-        self.frameData.insert(tk.END, '...')
+        self.frameData = tk.Text(self, height=3, width=100)
+        self.frameData.insert(tk.END, '...')    # default value
 
         # drop downs
         self.charDropDownValue = tk.StringVar(self)
@@ -46,6 +47,7 @@ class Tekken7App(tk.Tk):
         # pack UI
         self.characterLb.pack()
         self.characterDropDown.pack()
+        self.previewLb.pack()
         self.frameData.pack()
         self.getButton.pack()
         self.exitButton.pack()
