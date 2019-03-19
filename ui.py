@@ -70,6 +70,7 @@ class Tekken7App(tk.Tk):
             webpage = read.requestPage(x)
             webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
             print(webpage)
+            self.frameData.delete(1.0, tk.END)  # delete data
             self.frameData.insert(tk.END, webpage)
 
     def onExit(self):
