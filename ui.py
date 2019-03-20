@@ -29,6 +29,11 @@ class Tekken7App(tk.Tk):
 
         # labels
         self.characterLb = tk.Label(self, text='Character')
+        self.previewLb = tk.Label(self, text='Preview:')
+
+        # text box
+        self.frameData = tk.Text(self, height=3, width=100)
+        self.frameData.insert(tk.END, '...')    # default value
 
         # drop downs
         self.charDropDownValue = tk.StringVar(self)
@@ -42,6 +47,8 @@ class Tekken7App(tk.Tk):
         # pack UI
         self.characterLb.pack()
         self.characterDropDown.pack()
+        self.previewLb.pack()
+        self.frameData.pack()
         self.getButton.pack()
         self.exitButton.pack()
 
@@ -63,6 +70,8 @@ class Tekken7App(tk.Tk):
             webpage = read.requestPage(x)
             webpage = clean.cleanTable(str(webpage), self.charDropDownValue.get())
             print(webpage)
+            self.frameData.delete(1.0, tk.END)  # delete data
+            self.frameData.insert(tk.END, webpage)
 
     def onExit(self):
         self.destroy()
