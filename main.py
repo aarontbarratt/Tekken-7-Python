@@ -22,6 +22,7 @@ def make_directory():
         pass
 
 
+# some other comments
 def main():
     for character in CHARACTERS:
         url = WEBSITE.format(character)
