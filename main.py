@@ -14,8 +14,12 @@ class TableType(Enum):
     specials = 0
 
 
-if not os.path.exists(EXPORT_FOLDER):
+try:
     os.makedirs(EXPORT_FOLDER)
+except FileExistsError:
+    # directory already exists
+    pass
+
 
 for character in CHARACTERS:
 
