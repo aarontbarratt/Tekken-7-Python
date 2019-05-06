@@ -14,29 +14,33 @@ class TableType(Enum):
     specials = 0
 
 
-try:
-    os.makedirs(EXPORT_FOLDER)
-except FileExistsError:
-    # directory already exists
-    pass
+def make_directory():
+    print(EXPORT_FOLDER)
+    try:
+        os.makedirs(EXPORT_FOLDER)
+    except FileExistsError:
+        pass
 
 
-for character in CHARACTERS:
+def main():
+    for character in CHARACTERS:
+        url = WEBSITE.format(character)
+        print("Loading: " + url)
+        tables = pd.read_html(url)
 
-    url = WEBSITE.format(character)
-    print("Loading: " + url)
-    tables = pd.read_html(url)
+        for index, table, in enumerate(tables):
+            if index == TableType.specials.value:
+                table_part = '_specials'
+            elif index == TableType.normals.value:
+                table_part = '_normals'
+            else:
+                table_part = '_ERROR'
 
-    for index, table, in enumerate(tables):
-        if index == TableType.specials.value:
-            table_part = '_specials'
-        elif index == TableType.normals.value:
-            table_part = '_normals'
-        else:
-            table_part = '_ERROR'
+            export_file_name = EXPORT.format(character + table_part)
+            table.to_csv(export_file_name, ',')
+            print("Exported: " + export_file_name)
+        print()
 
-        export_file_name = EXPORT.format(character + table_part)
-        table.to_csv(export_file_name, ',')
-        print("Exported: " + export_file_name)
 
-    print()
+make_directory()
+main()
