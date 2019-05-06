@@ -9,6 +9,8 @@ from constant import EXPORT_FOLDER
 from constant import WEBSITE
 
 
+# some comments here
+
 class TableType(Enum):
     normals = 1
     specials = 0
