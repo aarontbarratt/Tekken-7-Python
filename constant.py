@@ -15,5 +15,5 @@ if platform == 'darwin':
     EXPORT = EXPORT_FOLDER + r'/{}.csv'
 # if anything else then try create windows path
 else:
-    EXPORT_FOLDER = r'c:\FrameData'
+    EXPORT_FOLDER = r'C:\FrameData'
     EXPORT = EXPORT_FOLDER + r'\{}.csv'
