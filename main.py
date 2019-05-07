@@ -1,19 +1,12 @@
 import os
-from enum import Enum
 
 import pandas as pd
 
 from constant import CHARACTERS
 from constant import EXPORT
 from constant import EXPORT_FOLDER
+from constant import TableType
 from constant import WEBSITE
-
-
-# some comments here
-
-class TableType(Enum):
-    normals = 1
-    specials = 0
 
 
 def make_directory():

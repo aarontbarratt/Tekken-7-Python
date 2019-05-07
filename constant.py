@@ -1,6 +1,13 @@
 # consts
 
+from enum import Enum
 from sys import platform
+
+
+class TableType(Enum):
+    normals = 1
+    specials = 0
+
 
 CHARACTERS = ['akuma', 'alisa', 'armor-king', 'asuka', 'bob', 'bryan', 'claudio', 'devil-jin', 'dragunov', 'eddy',
               'eliza', 'feng', 'geese', 'gigas', 'heihachi', 'hwoarang', 'jack7', 'jin', 'josie', 'julia', 'katarina',
